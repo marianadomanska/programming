@@ -2,7 +2,7 @@
 
 namespace App\Enums;
 
-enum MasterSpecialty: string
+enum MasterSpecialtyEnum: string
 {
     case Hair = 'hair';
     case Nails = 'nails';
