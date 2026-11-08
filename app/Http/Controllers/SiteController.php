@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\EntryRequest;
 use App\Http\Requests\MasterBookingRequest;
-use App\Enums\MasterSpecialty;
+use App\Enums\MasterSpecialtyEnum;
 
 class SiteController extends Controller
 {
@@ -30,9 +30,9 @@ class SiteController extends Controller
 public function masters()
 {
     $masters = [
-        ['name' => 'Анна', 'specialty' => MasterSpecialty::Hair->label(), 'id' => MasterSpecialty::Hair->value],
-        ['name' => 'Марія', 'specialty' => MasterSpecialty::Nails->label(), 'id' => MasterSpecialty::Nails->value],
-        ['name' => 'Олена', 'specialty' => MasterSpecialty::Makeup->label(), 'id' => MasterSpecialty::Makeup->value],
+        ['name' => 'Анна', 'specialty' => MasterSpecialtyEnum::Hair->label(), 'id' => MasterSpecialtyEnum::Hair->value],
+        ['name' => 'Марія', 'specialty' => MasterSpecialtyEnum::Nails->label(), 'id' => MasterSpecialtyEnum::Nails->value],
+        ['name' => 'Олена', 'specialty' => MasterSpecialtyEnum::Makeup->label(), 'id' => MasterSpecialtyEnum::Makeup->value],
     ];
 
     return view('site.masters', compact('masters'));
