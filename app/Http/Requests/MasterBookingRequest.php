@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Requests;
-use App\Enums\MasterSpecialty;
+use App\Enums\MasterSpecialtyEnum;
 use Illuminate\Validation\Rule;
 
 use Illuminate\Foundation\Http\FormRequest;
@@ -18,7 +18,7 @@ class MasterBookingRequest extends FormRequest
         return [
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'email'],
-            'master' => ['required', Rule::enum(MasterSpecialty::class)],
+            'master' => ['required', Rule::enum(MasterSpecialtyEnum::class)],
             'message' => ['required', 'string'],
         ];
     }
