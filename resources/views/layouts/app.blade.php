@@ -49,7 +49,8 @@ background-size: cover;
         <a href="{{ url('/') }}">Головна</a>
         <a href="{{ url('/about') }}">Про нас</a>
         <a href="{{ url('/contact') }}">Контакти</a>
-<a href="{{ url('/Social network') }}">Ми у соцмережах</a>
+<a href="{{ route('services.index') }}">Послуги</a>
+<a href="{{ route('site.masters') }}">Наші майстри</a>
     </nav>
 
     <main>
