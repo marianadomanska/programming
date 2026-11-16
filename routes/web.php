@@ -4,6 +4,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SiteController;
 use App\Http\Controllers\CountryController;
 use App\Http\Controllers\ServiceController;
+use App\Http\Controllers\StatsController;
+
 
 Route::get('/', function () {
     return view('welcome');
@@ -39,3 +41,9 @@ Route::get('/masters', [SiteController::class, 'masters'])->name('site.masters')
 Route::post('/masters', [SiteController::class, 'masterBooking'])->name('masters.booking');
 Route::resource('country', CountryController::class);
 Route::resource('services', ServiceController::class);
+Route::get('/stats', [StatsController::class, 'pages'])
+->name('stats.pages');
+Route::get('/stats/detail', [StatsController::class, 'detail'])
+->name('stats.detail');
+Route::get('/stats/services', [StatsController::class, 'popularServices'])
+    ->name('stats.services');

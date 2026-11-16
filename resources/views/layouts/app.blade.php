@@ -51,6 +51,7 @@ background-size: cover;
         <a href="{{ url('/contact') }}">Контакти</a>
 <a href="{{ route('services.index') }}">Послуги</a>
 <a href="{{ route('site.masters') }}">Наші майстри</a>
+<a href="{{ route('stats.pages') }}">Статистика</a>
     </nav>
 
     <main>
