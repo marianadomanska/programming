@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\service;
+use App\Models\Service;
 use Illuminate\Http\Request;
 
 class ServiceController extends Controller
@@ -10,14 +10,25 @@ class ServiceController extends Controller
     /**
      * Display a listing of the resource.
      */
-       
+
+
 public function index()
 {
-    $services = service::orderBy('category', 'asc')
-        ->orderBy('name', 'asc')
-        ->paginate(5);
+    $lang = request()->query('lang', 'uk');
 
-    return view('services.index', compact('services'));
+    if (!is_string($lang) || !preg_match('/^[a-z]{2,10}$/', $lang)) {
+        $lang = 'uk';
+    }
+
+    $services = Service::with(['translations' => function ($query) use ($lang) {
+            $query->where('lang', $lang);
+        }])
+        ->orderBy('category', 'asc')
+        ->orderBy('name', 'asc')
+        ->paginate(5)
+        ->withQueryString();
+
+    return view('services.index', compact('services', 'lang'));
 }
 
     public function create()
@@ -46,10 +57,22 @@ public function index()
     /**
      * Display the specified resource.
      */
-    public function show(service $service)
-    {
-      return view('services.show', compact('service'));
+
+public function show(Service $service)
+{
+    $lang = request()->query('lang', 'uk');
+
+    if (!is_string($lang) || !preg_match('/^[a-z]{2,10}$/', $lang)) {
+        $lang = 'uk';
     }
+
+    $translation = $service->translations()
+        ->where('lang', $lang)
+        ->first();
+
+    return view('services.show', compact('service', 'lang', 'translation'));
+}
+
 
     /**
      * Show the form for editing the specified resource.
