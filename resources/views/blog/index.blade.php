@@ -1,18 +1,29 @@
 @extends('layouts.app')
-
 @section('title', 'Блог')
-
 @section('content')
-    <h1>Блог</h1>
 
-    <div class="blog-grid">
-        @forelse ($blogs as $blog)
-            @include('blog._item', ['blog' => $blog])
-        @empty
-            <p>Записів поки немає.</p>
-        @endforelse
-    </div>
+<h1>Блог</h1>
+<nav class="blog-filters">
+    <a href="{{ route('blog.index') }}">
+        Усі записи
+    </a>
 
+    @foreach ($filters as $id => $name)
+        <a href="{{ route('blog.index', ['filter' => $id]) }}"
+           style="margin-left: 15px;">
+            {{ $name }}
+        </a>
+    @endforeach
+</nav>
+
+
+<div class="blog-grid">
+    @forelse ($blogs as $blog)
+        @include('blog._item', ['blog' => $blog])
+    @empty
+        <p>Записів за вибраною міткою немає.</p>
+    @endforelse
+</div>
 
 @if ($blogs->hasPages())
     <div style="margin-top: 20px;">
