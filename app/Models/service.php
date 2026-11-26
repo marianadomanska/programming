@@ -2,6 +2,7 @@
 namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 class Service extends Model
 {
     protected $fillable = [
@@ -15,4 +16,15 @@ class Service extends Model
 {
     return $this->hasMany(ServiceTranslation::class, 'service_id');
 }
+
+public function blogs(): BelongsToMany
+{
+    return $this->belongsToMany(
+        Blog::class,
+        'blog_service',
+        'service_id',
+        'blog_id'
+    );
+}
+
 }

@@ -21,6 +21,22 @@ class BlogRequest extends FormRequest
                 'nullable',
                 'exists:category,category_id',
             ],
+
+			'filters' => ['sometimes', 'array'],
+
+			'filters.*' => [
+			'integer',
+			'distinct',
+			'exists:filter,filter_id',
+			],
+			'services' => ['sometimes', 'array'],
+
+			'services.*' => [
+			'integer',
+			'distinct',
+			'exists:services,id',
+            ],
+
         ];
     }
 }

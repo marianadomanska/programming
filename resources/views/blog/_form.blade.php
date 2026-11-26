@@ -31,3 +31,45 @@
 @error('category_id')
     <p class="error">{{ $message }}</p>
 @enderror
+
+<p>
+    <label for="filters">Мітки</label>
+</p>
+
+<select id="filters" name="filters[]" multiple>
+    @foreach ($filters as $id => $name)
+        <option value="{{ $id }}"
+            @selected(in_array($id, old('filters', $selected ?? [])))>
+            {{ $name }}
+        </option>
+    @endforeach
+</select>
+
+@error('filters')
+    <p class="error">{{ $message }}</p>
+@enderror
+
+@error('filters.*')
+    <p class="error">{{ $message }}</p>
+@enderror
+
+<p>
+    <label for="services">Послуги салону</label>
+</p>
+
+<select id="services" name="services[]" multiple>
+    @foreach ($services as $id => $name)
+        <option value="{{ $id }}"
+            @selected(in_array($id, old('services', $selectedServices ?? [])))>
+            {{ $name }}
+        </option>
+    @endforeach
+</select>
+
+@error('services')
+    <p class="error">{{ $message }}</p>
+@enderror
+
+@error('services.*')
+    <p class="error">{{ $message }}</p>
+@enderror

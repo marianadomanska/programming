@@ -16,7 +16,7 @@
     </a>
 </p>
 
-<table border="1" cellpadding="10" cellspacing="0">
+<table class="services-table">
     <thead>
         <tr>
             <th>{{ $lang === 'en' ? 'Service' : 'Назва послуги' }}</th>

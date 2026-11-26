@@ -6,6 +6,7 @@ use App\Http\Controllers\CountryController;
 use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\StatsController;
 use App\Http\Controllers\BlogController;
+use App\Http\Controllers\FilterController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -49,4 +50,13 @@ Route::get('/stats/services', [StatsController::class, 'popularServices'])
     ->name('stats.services');
 Route::get('/blog/admin', [BlogController::class, 'admin'])
     ->name('blog.admin');
+
+Route::get('/blog/{blog}/tags', [BlogController::class, 'tags'])
+    ->name('blog.tags');
+
+Route::post('/blog/{blog}/tags', [BlogController::class, 'tagsStore'])
+    ->name('blog.tags.store');
+
 Route::resource('blog', BlogController::class);
+Route::resource('filters', FilterController::class)
+    ->except(['show']);

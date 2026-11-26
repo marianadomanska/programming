@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class Blog extends Model
 {
@@ -38,4 +39,26 @@ class Blog extends Model
             'id'
         );
     }
+
+public function filters(): BelongsToMany
+{
+    return $this->belongsToMany(
+        Filter::class,
+        'blog_filter',
+        'blog_id',
+        'filter_id'
+    );
+}
+
+public function services(): BelongsToMany
+{
+    return $this->belongsToMany(
+        service::class,
+        'blog_service',
+        'blog_id',
+        'service_id'
+    );
+}
+
+
 }
