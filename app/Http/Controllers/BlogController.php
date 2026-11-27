@@ -6,7 +6,7 @@ use App\Http\Requests\BlogRequest;
 use App\Models\Blog;
 use App\Models\Category;
 use App\Models\Filter;
-use App\Models\service;
+use App\Models\Service;
 use App\Queries\BlogFilter;
 use Illuminate\Http\Request;
 
@@ -50,7 +50,7 @@ class BlogController extends Controller
             'filters' => Filter::orderBy('filter_name')
                 ->pluck('filter_name', 'filter_id'),
 
-            'services' => service::orderBy('name')
+            'services' => Service::orderBy('name')
                 ->pluck('name', 'id'),
         ]);
     }
@@ -93,7 +93,7 @@ class BlogController extends Controller
             'selected' => $blog->filters
                 ->pluck('filter_id')->all(),
 
-            'services' => service::orderBy('name')
+            'services' => Service::orderBy('name')
                 ->pluck('name', 'id'),
 
             'selectedServices' => $blog->services
@@ -169,7 +169,7 @@ public function admin(Request $request, BlogFilter $filter)
         'filters' => Filter::orderBy('filter_name')
             ->pluck('filter_name', 'filter_id'),
 
-        'services' => service::orderBy('name')
+        'services' => Service::orderBy('name')
             ->pluck('name', 'id'),
     ]);
 }

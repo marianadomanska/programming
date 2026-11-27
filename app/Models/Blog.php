@@ -53,7 +53,7 @@ public function filters(): BelongsToMany
 public function services(): BelongsToMany
 {
     return $this->belongsToMany(
-        service::class,
+        Service::class,
         'blog_service',
         'blog_id',
         'service_id'
